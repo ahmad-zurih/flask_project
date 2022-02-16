@@ -1,0 +1,16 @@
+stages:
+  - deploy
+
+variables:
+  APP_NAME: flask_project
+
+deploy:
+  image: ilyasemenov/gitlab-ci-git-push
+  stage: deploy
+  environment:
+    name: production
+    url: http://172.23.115.114:58177
+  only:
+    - main
+  script:
+    - git-push ssh://dokku@172.23.115.114:22/team-b
